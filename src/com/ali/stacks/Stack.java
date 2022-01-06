@@ -41,6 +41,11 @@ import com.ali.stacks.abstraction.IStack;
      }
 
      @Override
+     public boolean isEmpty() {
+         return this.top == 0;
+     }
+
+     @Override
      public String toString() {
          return linkedList.toString();
      }
