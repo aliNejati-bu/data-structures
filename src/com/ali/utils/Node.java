@@ -11,4 +11,9 @@ public class Node<E> {
         this.prev = prev;
         this.data = data;
     }
+
+    @Override
+    public String toString() {
+        return data.toString();
+    }
 }
