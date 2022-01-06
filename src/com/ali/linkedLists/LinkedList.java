@@ -1,12 +1,24 @@
 package com.ali.linkedLists;
 
+import com.ali.linkedLists.abstraction.ILinkedList;
 import com.ali.utils.Node;
 
-public class LinkedList<E> {
+public class LinkedList<E> implements ILinkedList<E> {
     private Node<E> head;
     private Node<E> tail;
     private int size = 0;
 
+    @Override
+    public E getHeadData() {
+        return this.getHead().data;
+    }
+
+    @Override
+    public E getTailData() {
+        return this.getTail().data;
+    }
+
+    @Override
     public int getSize() {
         return size;
     }
@@ -27,6 +39,7 @@ public class LinkedList<E> {
         this.head = head;
     }
 
+    @Override
     public LinkedList<E> addFirst(E data) {
         Node<E> node = new Node<E>(null, null, data);
         if (size == 0) {
@@ -42,6 +55,7 @@ public class LinkedList<E> {
         return this;
     }
 
+    @Override
     public LinkedList<E> addLast(E data) {
         Node<E> node = new Node<E>(null, null, data);
         if (size == 0) {
@@ -57,6 +71,7 @@ public class LinkedList<E> {
         return this;
     }
 
+    @Override
     public E get(int index){
         if (index < 0) {
             return null;
@@ -79,6 +94,7 @@ public class LinkedList<E> {
         return null;
     }
 
+    @Override
     public E deleteTail(){
         if (size == 0){
             return null;
@@ -103,6 +119,7 @@ public class LinkedList<E> {
         return result.toString();
     }
 
+    @Override
     public E deleteHead(){
         if (size == 0){
             return null;
