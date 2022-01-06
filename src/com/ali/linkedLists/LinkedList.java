@@ -72,7 +72,7 @@ public class LinkedList<E> implements ILinkedList<E> {
     }
 
     @Override
-    public E get(int index){
+    public E get(int index) {
         if (index < 0) {
             return null;
         }
@@ -85,7 +85,7 @@ public class LinkedList<E> implements ILinkedList<E> {
         Node<E> c = getHead();
         int counter = 0;
         while (c != null) {
-            if (index == counter){
+            if (index == counter) {
                 return c.data;
             }
             counter++;
@@ -95,11 +95,17 @@ public class LinkedList<E> implements ILinkedList<E> {
     }
 
     @Override
-    public E deleteTail(){
-        if (size == 0){
+    public E deleteTail() {
+        if (size == 0) {
             return null;
         }
         E data = getTail().data;
+        if (getTail().prev == null) {
+            size = 0;
+            setHead(null);
+            setTail(null);
+            return data;
+        }
         setTail(getTail().prev);
         getTail().next = null;
         size--;
@@ -111,7 +117,7 @@ public class LinkedList<E> implements ILinkedList<E> {
     public String toString() {
         StringBuilder result = new StringBuilder("[");
         Node<E> c = getHead();
-        while (c != null){
+        while (c != null) {
             result.append(c.toString()).append(",");
             c = c.next;
         }
@@ -120,14 +126,20 @@ public class LinkedList<E> implements ILinkedList<E> {
     }
 
     @Override
-    public E deleteHead(){
-        if (size == 0){
+    public E deleteHead() {
+        if (size == 0) {
             return null;
         }
         E data = getHead().data;
+        if (getHead().next == null) {
+            size = 0;
+            setHead(null);
+            setTail(null);
+            return data;
+        }
         setHead(getHead().next);
         getHead().prev = null;
-        size --;
+        size--;
         return data;
     }
 
