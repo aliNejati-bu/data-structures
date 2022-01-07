@@ -124,4 +124,18 @@ public class StackApplications {
         return stack.pop();
     }
 
+    public static String prefixToInfix(String prefixExpression, IStack<String> stack) {
+        for (int i = prefixExpression.length() - 1; i >= 0 ; i--) {
+            char currCh = prefixExpression.charAt(i);
+            if (isOperator(currCh)) {
+                String A = stack.pop();
+                String B = stack.pop();
+                stack.push("(" + A + currCh + B + ")");
+            } else {
+                stack.push(Character.toString(currCh));
+            }
+        }
+        return stack.pop();
+    }
+
 }
