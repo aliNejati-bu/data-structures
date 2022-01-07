@@ -109,4 +109,19 @@ public class StackApplications {
         return result.reverse().toString();
     }
 
+
+    public static String postfixToInfix(String postfixExpression, IStack<String> stack) {
+        for (int i = 0; i < postfixExpression.length(); i++) {
+            char currCh = postfixExpression.charAt(i);
+            if (isOperator(currCh)) {
+                String A = stack.pop();
+                String B = stack.pop();
+                stack.push("(" + B + currCh + A + ")");
+            } else {
+                stack.push(Character.toString(currCh));
+            }
+        }
+        return stack.pop();
+    }
+
 }
