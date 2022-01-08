@@ -5,6 +5,25 @@ public class Node<E> {
     private E data;
     private Node<E> right;
 
+    @Override
+    public String toString() {
+        if (right != null && left != null) {
+            return data + "{" +
+                    left +
+                    "," +
+                    right +
+                    '}';
+        }else if (right != null && left == null){
+            return data + "{null , " +
+                    right +
+                    '}';
+        }else if (right == null && left != null){
+            return data + "{" +
+                    left +
+                    " , null }";
+        }
+        return data.toString();
+    }
 
     public Node(Node<E> left, E data, Node<E> right) {
         this.left = left;
