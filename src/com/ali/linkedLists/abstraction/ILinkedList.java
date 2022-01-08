@@ -11,4 +11,5 @@ public interface ILinkedList<E> extends Iterator<E> {
     public E get(int index);
     public E deleteHead();
     public E deleteTail();
+    public ILinkedList<E> buildNew();
 }

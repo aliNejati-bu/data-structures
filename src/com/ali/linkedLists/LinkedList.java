@@ -4,6 +4,7 @@ import com.ali.linkedLists.abstraction.ILinkedList;
 import com.ali.utils.Node;
 
 public class LinkedList<E> implements ILinkedList<E> {
+
     private Node<E> head;
     private Node<E> tail;
     private int size = 0;
@@ -111,6 +112,11 @@ public class LinkedList<E> implements ILinkedList<E> {
         getTail().next = null;
         size--;
         return data;
+    }
+
+    @Override
+    public ILinkedList<E> buildNew() {
+        return new LinkedList<E>();
     }
 
 
