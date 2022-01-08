@@ -97,4 +97,24 @@ public class BinaryTree<E> {
         return preOrder(getRoot(),new ArrayList<>());
     }
 
+    private void swapTree(Node<E> node){
+        Node<E> helper = node.getLeft();
+        node.setLeft(node.getRight());
+        node.setRight(helper);
+        if (node.getRight() != null){
+            swapTree(node.getRight());
+        }
+        if (node.getLeft() != null){
+            swapTree(node.getLeft());
+        }
+    }
+
+    public BinaryTree<E> swapTree(){
+        if (getRoot() == null){
+            return this;
+        }
+        this.swapTree(this.getRoot());
+        return this;
+    }
+
 }
