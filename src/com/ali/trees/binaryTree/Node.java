@@ -1,14 +1,38 @@
 package com.ali.trees.binaryTree;
 
 public class Node<E> {
-    public Node<E> left;
-    public E data;
-    public Node<E> right;
+    private Node<E> left;
+    private E data;
+    private Node<E> right;
 
 
     public Node(Node<E> left, E data, Node<E> right) {
         this.left = left;
         this.data = data;
         this.right = right;
+    }
+
+    public void setLeft(Node<E> left) {
+        this.left = left;
+    }
+
+    public void setData(E data) {
+        this.data = data;
+    }
+
+    public void setRight(Node<E> right) {
+        this.right = right;
+    }
+
+    public Node<E> getLeft() {
+        return left;
+    }
+
+    public E getData() {
+        return data;
+    }
+
+    public Node<E> getRight() {
+        return right;
     }
 }
