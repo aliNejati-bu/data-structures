@@ -1,6 +1,8 @@
 package com.ali.linkedLists.abstraction;
 
-public interface ILinkedList<E> {
+import java.util.Iterator;
+
+public interface ILinkedList<E> extends Iterator<E> {
     public E getHeadData();
     public E getTailData();
     public int getSize();

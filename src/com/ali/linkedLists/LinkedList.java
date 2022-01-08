@@ -7,7 +7,8 @@ public class LinkedList<E> implements ILinkedList<E> {
     private Node<E> head;
     private Node<E> tail;
     private int size = 0;
-
+    private Node<E> headOfIterate;
+    boolean inIter = false;
     @Override
     public E getHeadData() {
         return this.getHead().data;
@@ -143,4 +144,31 @@ public class LinkedList<E> implements ILinkedList<E> {
         return data;
     }
 
+
+
+    @Override
+    public boolean hasNext() {
+        if (getSize() == 0){
+            return false;
+        }
+        if (!inIter){
+            headOfIterate = getHead();
+            inIter = true;
+        }
+
+        if (headOfIterate == null){
+            inIter = false;
+            return false;
+        }
+
+        return true;
+
+    }
+
+    @Override
+    public E next() {
+        E data = headOfIterate.data;
+        headOfIterate = headOfIterate.next;
+        return data;
+    }
 }
