@@ -91,30 +91,52 @@ public class BinaryTree<E> {
     }
 
     public ArrayList<E> preOrder() {
-        if (getRoot() == null){
+        if (getRoot() == null) {
             return new ArrayList<>();
         }
-        return preOrder(getRoot(),new ArrayList<>());
+        return preOrder(getRoot(), new ArrayList<>());
     }
 
-    private void swapTree(Node<E> node){
+    private void swapTree(Node<E> node) {
+        if (node == null) {
+            return;
+        }
         Node<E> helper = node.getLeft();
         node.setLeft(node.getRight());
         node.setRight(helper);
-        if (node.getRight() != null){
+        if (node.getRight() != null) {
             swapTree(node.getRight());
         }
-        if (node.getLeft() != null){
+        if (node.getLeft() != null) {
             swapTree(node.getLeft());
         }
     }
 
-    public BinaryTree<E> swapTree(){
-        if (getRoot() == null){
-            return this;
-        }
+    public BinaryTree<E> swapTree() {
         this.swapTree(this.getRoot());
         return this;
     }
 
+    private int[] getNodesCounts(Node<E> node, int[] counts) {
+        if (node == null) {
+            return counts;
+        }
+        if (node.getLeft() == null && node.getRight() == null) {
+            counts[1]++;
+            return counts;
+        }
+        counts[0]++;
+        if (node.getLeft() != null) {
+            getNodesCounts(node.getLeft(), counts);
+        }
+        if (node.getRight() != null) {
+            getNodesCounts(node.getRight(), counts);
+        }
+        return counts;
+    }
+
+
+    public int[] getNodesCounts() {
+        return getNodesCounts(getRoot(), new int[]{0, 0});
+    }
 }
