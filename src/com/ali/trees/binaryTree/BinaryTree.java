@@ -90,12 +90,54 @@ public class BinaryTree<E> {
         return arrayList;
     }
 
+    private ArrayList<E> inOrder(Node<E> node, ArrayList<E> arrayList) {
+        if (node.getLeft() != null) {
+            inOrder(node.getLeft(), arrayList);
+        }
+
+        arrayList.add(node.getData());
+
+        if (node.getRight() != null) {
+            inOrder(node.getRight(), arrayList);
+        }
+        return arrayList;
+    }
+
+    private ArrayList<Node<E>> nodeInOrder(Node<E> node, ArrayList<Node<E>> arrayList) {
+        if (node.getLeft() != null) {
+            nodeInOrder(node.getLeft(), arrayList);
+        }
+
+        arrayList.add(node);
+
+        if (node.getRight() != null) {
+            nodeInOrder(node.getRight(), arrayList);
+        }
+        return arrayList;
+    }
+
     public ArrayList<E> preOrder() {
         if (getRoot() == null) {
             return new ArrayList<>();
         }
         return preOrder(getRoot(), new ArrayList<>());
     }
+
+    public ArrayList<E> inOrder() {
+        if (getRoot() == null) {
+            return new ArrayList<>();
+        }
+        return inOrder(getRoot(), new ArrayList<>());
+    }
+
+    public ArrayList<Node<E>> nodeInOrder() {
+        if (getRoot() == null) {
+            return new ArrayList<>();
+        }
+        return nodeInOrder(getRoot(), new ArrayList<>());
+    }
+
+
 
     private void swapTree(Node<E> node) {
         if (node == null) {

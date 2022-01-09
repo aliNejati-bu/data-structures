@@ -4,7 +4,8 @@ public class Node<E> {
     private Node<E> left;
     private E data;
     private Node<E> right;
-
+    public boolean leftThread = false;
+    public boolean rightThread = false;
     @Override
     public String toString() {
         if (right != null && left != null) {
@@ -54,4 +55,5 @@ public class Node<E> {
     public Node<E> getRight() {
         return right;
     }
+
 }
