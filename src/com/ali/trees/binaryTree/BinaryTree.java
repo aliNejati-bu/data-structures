@@ -2,19 +2,23 @@ package com.ali.trees.binaryTree;
 
 import com.ali.linkedLists.abstraction.ILinkedList;
 import com.ali.stacks.Stack;
+import com.ali.trees.binaryTree.abstraction.IBinaryTree;
 
 import java.util.ArrayList;
 
-public class BinaryTree<E> {
+public class BinaryTree<E> implements IBinaryTree<E> {
     Node<E> root;
+    public ILinkedList<Node<E>> linkedList;
 
 
-    public BinaryTree(Node<E> root) {
+    public BinaryTree(Node<E> root, ILinkedList<Node<E>> linkedList) {
         this.root = root;
+        this.linkedList = linkedList;
     }
 
-    public BinaryTree() {
+    public BinaryTree(ILinkedList<Node<E>> linkedList) {
         this.root = null;
+        this.linkedList = linkedList;
     }
 
     private void setRoot(Node<E> root) {
@@ -25,7 +29,7 @@ public class BinaryTree<E> {
         return root;
     }
 
-    public BinaryTree<E> insert(Node<E> newNode, ILinkedList<Node<E>> linkedList) {
+    public BinaryTree<E> insert(Node<E> newNode) {
         if (getRoot() == null) {
             this.root = newNode;
             return this;
@@ -36,6 +40,7 @@ public class BinaryTree<E> {
             getRoot().setRight(newNode);
             return this;
         } else {
+            ILinkedList<Node<E>> linkedList = this.linkedList.buildNew();
             linkedList.addLast(getRoot().getLeft());
             linkedList.addLast(getRoot().getRight());
             doInsert(linkedList, newNode);
@@ -181,4 +186,5 @@ public class BinaryTree<E> {
     public int[] getNodesCounts() {
         return getNodesCounts(getRoot(), new int[]{0, 0});
     }
+
 }
