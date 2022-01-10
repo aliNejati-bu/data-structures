@@ -17,7 +17,7 @@ public class BinaryTree<E> {
         this.root = null;
     }
 
-    public void setRoot(Node<E> root) {
+    private void setRoot(Node<E> root) {
         this.root = root;
     }
 

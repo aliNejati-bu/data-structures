@@ -4,8 +4,25 @@ public class Node<E> {
     private Node<E> left;
     private E data;
     private Node<E> right;
-    public boolean leftThread = false;
-    public boolean rightThread = false;
+    private boolean leftThread = false;
+    private boolean rightThread = false;
+
+    public void setLeftThread(boolean leftThread) {
+        this.leftThread = leftThread;
+    }
+
+    public void setRightThread(boolean rightThread) {
+        this.rightThread = rightThread;
+    }
+
+    public boolean isLeftThread() {
+        return leftThread;
+    }
+
+    public boolean isRightThread() {
+        return rightThread;
+    }
+
     @Override
     public String toString() {
         if (right != null && left != null) {
