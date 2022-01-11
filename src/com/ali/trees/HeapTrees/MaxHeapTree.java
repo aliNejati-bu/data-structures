@@ -21,6 +21,36 @@ public class MaxHeapTree implements IHeapTree {
         items = new int[capacity];
     }
 
+    public MaxHeapTree(int[] ar){
+        int cur = ar.length / 2;
+        for (int i = cur; i > 0; i--) {
+            happily(ar,i);
+        }
+        this.capacity = ar.length;
+        this.items = ar;
+        size = capacity;
+    }
+
+    void happily(int[] ar,int i){
+        int lci = 2*i;
+        int rci = 2*i+1;
+        int max;
+        if (lci < ar.length && ar[lci] > ar[i]){
+            max = lci;
+        }else {
+            max = i;
+        }
+        if (rci < ar.length && ar[rci] > ar[max]){
+            max = rci;
+        }
+        if (max != i){
+            int temp = ar[i];
+            ar[i] = ar[max];
+            ar[max] = temp;
+            happily(ar,max);
+        }
+    }
+
     @Override
     public IHeapTree insert(int item) {
         if (size >= capacity){
