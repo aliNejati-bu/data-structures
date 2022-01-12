@@ -1,5 +1,7 @@
 package com.ali.trees.binaryTree;
 
+import java.util.Objects;
+
 public class Node<E> {
     private Node<E> left;
     private E data;
@@ -13,6 +15,19 @@ public class Node<E> {
 
     public void setRightThread(boolean rightThread) {
         this.rightThread = rightThread;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Node<?> node = (Node<?>) o;
+        return Objects.equals(data, node.data);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(data);
     }
 
     public boolean isLeftThread() {

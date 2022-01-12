@@ -21,6 +21,40 @@ public class BinaryTree<E> implements IBinaryTree<E> {
         this.linkedList = linkedList;
     }
 
+
+    public BinaryTree(ILinkedList<Node<E>> linkedList, ArrayList<E> inOrder, ArrayList<E> preOrder) {
+        root = createFromInOrderAndPreOrder(0,inOrder.size(),inOrder,preOrder);
+    }
+
+
+    private Node<E> createFromInOrderAndPreOrder(int min, int max, ArrayList<E> inOrder, ArrayList<E> preOrder) {
+        if (min + 1 == max) {
+            return new Node<>(null, inOrder.get(min), null);
+        }
+        Integer rootIndex = null;
+        Integer newMinMax = null;
+        for (int i = 0; i < preOrder.size(); i++) {
+            for (int j = min; j < max; j++) {
+                if (preOrder.get(i).equals(inOrder.get(j))) {
+                    rootIndex = i;
+                    newMinMax = j;
+                    break;
+                }
+            }
+            if (rootIndex != null && newMinMax != null) {
+                break;
+            }
+        }
+        if (rootIndex != null && newMinMax != null) {
+            return new Node<>(
+                    createFromInOrderAndPreOrder(min, newMinMax, inOrder, preOrder),
+                    preOrder.get(rootIndex),
+                    createFromInOrderAndPreOrder(newMinMax + 1, max, inOrder, preOrder)
+            );
+        }
+        return null;
+    }
+
     private void setRoot(Node<E> root) {
         this.root = root;
     }
@@ -29,7 +63,7 @@ public class BinaryTree<E> implements IBinaryTree<E> {
         return root;
     }
 
-    public BinaryTree<E> insert(Node<E> newNode) {
+    public IBinaryTree<E> insert(Node<E> newNode) {
         if (getRoot() == null) {
             this.root = newNode;
             return this;
@@ -141,7 +175,6 @@ public class BinaryTree<E> implements IBinaryTree<E> {
         }
         return nodeInOrder(getRoot(), new ArrayList<>());
     }
-
 
 
     private void swapTree(Node<E> node) {
